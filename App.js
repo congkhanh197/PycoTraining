@@ -6,46 +6,36 @@
  * @flow
  */
 
-import React, {Component} from 'react';
-import {Platform, StyleSheet, Text, View} from 'react-native';
+import React, { Component } from 'react';
+import {
+  StyleSheet,
+  View,
+  ToastAndroid
+} from 'react-native';
+import WelcomeScreen from './assets/components/WelcomeScreen';
 
-const instructions = Platform.select({
-  ios: 'Press Cmd+R to reload,\n' + 'Cmd+D or shake for dev menu',
-  android:
-    'Double tap R on your keyboard to reload,\n' +
-    'Shake or press menu button for dev menu',
-});
+const WelcomeData =  {
+    logo: require('./assets/images/welcome/logo.png'),
+    imageWelcome: require('./assets/images/welcome/welcome_image.png'),
+    imageArrowRight: require('./assets/images/welcome/arrow_right.png'),
+    textSlogan: "Your ride, on demand",
+    textDescribe: "Whether you're headed to work, the airport, or out on the town, Uber connects you with reliable ride in minutes. One tap and a car comes directly to you.",
+    textButton:"Register by Phone",
+    onClickRegisterbyPhone: function () {
+      ToastAndroid.show('RegisterbyPhoneButton', ToastAndroid.SHORT);
+      //TODO Navigation to next View;
+    },
+}
 
-
-
-// type Props = {};
 export default class App extends Component {
   render() {
     return (
-      <View style={styles.container}>
-        <Text style={styles.welcome}>Welcome to React Native!</Text>
-        <Text style={styles.instructions}>To get started, edit App.js</Text>
-        <Text style={styles.instructions}>{instructions}</Text>
+      <View style={{flex:1}}>
+          <WelcomeScreen data={WelcomeData}></WelcomeScreen>
       </View>
     );
   }
 }
 
 const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    justifyContent: 'center',
-    alignItems: 'center',
-    backgroundColor: '#F5FCFF',
-  },
-  welcome: {
-    fontSize: 20,
-    textAlign: 'center',
-    margin: 10,
-  },
-  instructions: {
-    textAlign: 'center',
-    color: '#333333',
-    marginBottom: 5,
-  },
 });
