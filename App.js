@@ -12,13 +12,14 @@ import {
   Text
 } from 'react-native';
 
-import WelcomeContainer from './src/modules/Welcome/Welcome.container'
+import WelcomeContainer from './src/modules/Welcome/Welcome.container';
+import RegisterContainer from './src/modules/Register/Register.container';
 
 export default class App extends Component {
   render() {
     return (
       <View style={{flex:1}}>
-          {WelcomeContainer()}
+        {RegisterContainer()}
       </View>
     );
   }

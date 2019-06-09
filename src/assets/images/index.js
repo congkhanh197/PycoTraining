@@ -3,6 +3,9 @@ const images = {
   arrowRight: require('./arrow_right.png'),
   welcome: {
     image: require('./welcome_image.png')
+  },
+  register:{
+    image: require('./register_image.png')
   }
 };
 
