@@ -8,7 +8,9 @@ const images = {
   },
   register:{
     image: require('./register_image.png')
-  }
+  },
+  camera: require('./camera.png'),
+  profile: require('./profile.png'),
 };
 
 export default images;
