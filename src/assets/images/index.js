@@ -1,6 +1,10 @@
 const images = {
   logo: require('./logo.png'),
-  arrowRight: require('./arrow_right.png'),
+  arrowRight: {
+    white:require('./arrow_right.png'),
+    black:require('./arrow_right_black.png')
+  },
+  
   male: require('./male.png'),
   female: require('./female.png'),
   welcome: {

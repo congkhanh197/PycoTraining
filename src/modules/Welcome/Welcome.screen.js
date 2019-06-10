@@ -47,7 +47,7 @@ export default class WelcomeScreen extends Component {
                 style={styles.touchableOpacity}
             >
                 <Text style={styles.buttonText}>Register by Phone</Text>
-                <Image source={IMAGES.arrowRight}/>
+                <Image source={IMAGES.arrowRight.white}/>
 
             </TouchableOpacity>
         )
