@@ -120,6 +120,16 @@ export default class GenderScreen extends Component {
         </View>
     )
 
+    renderTabNavigator = ()=>(
+        <View style={{flexDirection:'row',justifyContent:'space-between'}}>
+            <View style={{width:15, height:15, backgroundColor:'black'}}/>
+            <View style={{width:15, height:15, backgroundColor:'black'}}/>
+            <View style={{width:15, height:15, backgroundColor:'black'}}/>
+            <View style={{width:15, height:15, backgroundColor:'black'}}/>
+            <View style={{width:15, height:15, backgroundColor:'black'}}/>
+        </View>
+    )
+
  
     render() {
         return (
@@ -130,6 +140,7 @@ export default class GenderScreen extends Component {
                     {this.renderNearByRestaurant()}
                     {this.renderNearByFriend()}
                 </View>
+                {this.renderTabNavigator()}
             </View>
             
         )
