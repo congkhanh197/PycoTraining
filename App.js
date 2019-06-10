@@ -20,11 +20,12 @@ import GenderContainer from './src/modules/Gender/Gender.container';
 import ProfileContainer from './src/modules/Profile/Profile.container';
 import NotificationContainer from './src/modules/Notification/Notification.container';
 import MapsContainer from './src/modules/Maps/Maps.container';
+import DiscoveryContainer from './src/modules/Discovery/Discovery.container';
 export default class App extends Component {
   render() {
     return (
       <View style={{flex:1}}>
-        {MapsContainer()}
+        {DiscoveryContainer()}
       </View>
     );
   }
