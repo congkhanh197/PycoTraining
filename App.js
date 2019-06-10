@@ -19,11 +19,12 @@ import NameContainer from './src/modules/Name/Name.container';
 import GenderContainer from './src/modules/Gender/Gender.container';
 import ProfileContainer from './src/modules/Profile/Profile.container';
 import NotificationContainer from './src/modules/Notification/Notification.container';
+import MapsContainer from './src/modules/Maps/Maps.container';
 export default class App extends Component {
   render() {
     return (
       <View style={{flex:1}}>
-        {NotificationContainer()}
+        {MapsContainer()}
       </View>
     );
   }
