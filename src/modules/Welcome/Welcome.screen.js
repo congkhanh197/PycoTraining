@@ -1,6 +1,7 @@
 import React, {Component} from 'react';
 import {Text, Image, View, TouchableOpacity, ToastAndroid} from 'react-native';
 
+import {LogoHeader} from '../navigation/headers/Logo.header';
 
 import {IMAGES} from '../../assets';
 import styles from './Welcome.screen.styles';
@@ -12,20 +13,13 @@ import styles from './Welcome.screen.styles';
 //     'Shake or press menu button for dev menu',
 // });
 
-const onClickRegisterbyPhone = () => {
-    ToastAndroid.show('RegisterbyPhoneButton', ToastAndroid.SHORT);
-    //TODO Navigation to next View;
-};
 export default class WelcomeScreen extends Component {
 
-    renderLogo = ()=>{
-        return (
-            <Image
-                source={IMAGES.logo}
-            />
-        )
-    }
-    renderWelcomeImage = ()=>{
+    _onClickRegisterbyPhone = () => {
+        this.props.navigation.navigate('Register');
+    };
+
+    _renderWelcomeImage = ()=>{
         return (
             <Image
                 resizeMethod={'scale'}
@@ -35,21 +29,21 @@ export default class WelcomeScreen extends Component {
             />
         ); 
     }
-    renderWelcomeSlogan = () =>{
+    _renderWelcomeSlogan = () =>{
         return (
             <Text style={styles.textSlogan}>Your ride, on demand</Text>
         )
     }
-    renderWelcomeText = () =>{
+    _renderWelcomeText = () =>{
         return (
             <Text style={styles.textDescribe}>Whether you're headed to work, the airport, or out on the town, Uber connects you with reliable ride in minutes. One tap and a car comes directly to you.</Text>
         )
     }
 
-    renderRegisterButton = () =>{
+    _renderRegisterButton = () =>{
         return (
             <TouchableOpacity
-                onPress={onClickRegisterbyPhone}
+                onPress={this._onClickRegisterbyPhone}
                 style={styles.touchableOpacity}
             >
                 <Text style={styles.buttonText}>Register by Phone</Text>
@@ -61,11 +55,11 @@ export default class WelcomeScreen extends Component {
     render() {
         return (
             <View style={styles.container}>
-                {this.renderLogo()}
-                {this.renderWelcomeImage()}
-                {this.renderWelcomeSlogan()}
-                {this.renderWelcomeText()}
-                {this.renderRegisterButton()}
+                {LogoHeader()}
+                {this._renderWelcomeImage()}
+                {this._renderWelcomeSlogan()}
+                {this._renderWelcomeText()}
+                {this._renderRegisterButton()}
             </View>
         );
     }

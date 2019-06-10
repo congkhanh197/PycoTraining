@@ -6,27 +6,37 @@
  * @flow
  */
 
-import React, { Component } from 'react';
-import {
-  View,
-  Text
-} from 'react-native';
+import React from 'react';
 
-import WelcomeContainer from './src/modules/Welcome/Welcome.container';
-import RegisterContainer from './src/modules/Register/Register.container';
-import VerifyContainer from './src/modules/Verify/Verify.container';
-import NameContainer from './src/modules/Name/Name.container';
-import GenderContainer from './src/modules/Gender/Gender.container';
-import ProfileContainer from './src/modules/Profile/Profile.container';
-import NotificationContainer from './src/modules/Notification/Notification.container';
-import MapsContainer from './src/modules/Maps/Maps.container';
-import DiscoveryContainer from './src/modules/Discovery/Discovery.container';
-export default class App extends Component {
-  render() {
-    return (
-      <View style={{flex:1}}>
-        {DiscoveryContainer()}
-      </View>
-    );
+import WelcomeScreen from './src/modules/Welcome/Welcome.screen';
+import RegisterScreen from './src/modules/Register/Register.screen';
+import VerifyScreen from './src/modules/Verify/Verify.screen';
+import NameScreen from './src/modules/Name/Name.screen';
+import GenderScreen from './src/modules/Gender/Gender.screen';
+import ProfileScreen from './src/modules/Profile/Profile.screen';
+import NotificationScreen from './src/modules/Notification/Notification.screen';
+import MapsScreen from './src/modules/Maps/Maps.screen';
+import DiscoveryScreen from './src/modules/Discovery/Discovery.screen';
+import AuthLoadingScreen from './src/modules/navigation/AuthLoading.screen';
+
+import { createSwitchNavigator, createStackNavigator, createAppContainer} from 'react-navigation';
+const AppStack = createStackNavigator({ Home: DiscoveryScreen, Maps: MapsScreen}, {defaultNavigationOptions: {header:null}});
+const AuthStack = createStackNavigator({ 
+  Welcome: WelcomeScreen, 
+  Register: RegisterScreen, 
+  Verify: VerifyScreen,
+  NameInput: NameScreen,
+  ChooseGender: GenderScreen,
+  Avatar: ProfileScreen,
+  NotifiPermision: NotificationScreen}, {defaultNavigationOptions: {header:null}});
+
+export default createAppContainer(createSwitchNavigator(
+  {
+    AuthLoading: AuthLoadingScreen,
+    App: AppStack,
+    Auth: AuthStack,
+  },
+  {
+    initialRouteName: 'AuthLoading',
   }
-}
+));
