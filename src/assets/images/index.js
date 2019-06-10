@@ -11,6 +11,7 @@ const images = {
   },
   camera: require('./camera.png'),
   profile: require('./profile.png'),
+  notification: require('./notification.png'),
 };
 
 export default images;

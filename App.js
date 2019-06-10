@@ -18,12 +18,12 @@ import VerifyContainer from './src/modules/Verify/Verify.container';
 import NameContainer from './src/modules/Name/Name.container';
 import GenderContainer from './src/modules/Gender/Gender.container';
 import ProfileContainer from './src/modules/Profile/Profile.container';
-
+import NotificationContainer from './src/modules/Notification/Notification.container';
 export default class App extends Component {
   render() {
     return (
       <View style={{flex:1}}>
-        {ProfileContainer()}
+        {NotificationContainer()}
       </View>
     );
   }
