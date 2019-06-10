@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-import {Text, Image, View, TouchableOpacity, ToastAndroid} from 'react-native';
+import {Text, Image, View, TouchableOpacity} from 'react-native';
 
 import {LogoHeader} from '../navigation/headers/Logo.header';
 

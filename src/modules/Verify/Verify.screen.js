@@ -5,13 +5,14 @@ import {IMAGES} from '../../assets';
 // import styles from './Verify.screen.styles'
 
 export default class VerifyScreen extends Component {
+    
 
     renderTextTittle = () => {
         return (
             <Text style={{
                 margin:30,
                 marginTop: 100, marginRight:70, color:"#353B50", fontSize: 18}}>
-                Enter the 4-digits code sent to you at 1847129477.
+                Enter the 4-digits code sent to you at {this.props.navigation.getParam('phone','null')}.
                 <Text style={{color: '#25B7DD',fontSize: 18}}> Did you enter the correct number?</Text>
             </Text>
         )
