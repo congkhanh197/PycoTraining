@@ -1,7 +1,9 @@
 import React, { PureComponent } from 'react'
 import { Text, View ,TextInput,} from 'react-native'
+
 import ArrowLeftHeader from '../navigation/headers/ArrowLeft.header'
 import SkipHeader from '../navigation/headers/Skip.header'
+import ArrowRightFooter from '../navigation/footers/ArrowRight.footer'
 
 export default class NameScreen extends PureComponent {
 
@@ -32,6 +34,18 @@ export default class NameScreen extends PureComponent {
     _onClickBack = ()=>{
         this.props.navigation.goBack();
     }
+
+    _onClickNext = ()=>{
+        this.props.navigation.navigate('ChooseGender');
+    }
+    renderFooter = () =>{
+        return (
+            <View style={{flexDirection:'row-reverse', margin:30}}>
+                {ArrowRightFooter({onPress:this._onClickNext})}
+            </View>
+        )
+    }
+
     render() {
         return (
             <View style={{flex:1,flexDirection:'column'}}>
@@ -44,6 +58,7 @@ export default class NameScreen extends PureComponent {
                         {this.renderTextTittle()}
                         {this.renderInputName()}
                 </View>
+                {this.renderFooter()}
             </View>
         )
     }

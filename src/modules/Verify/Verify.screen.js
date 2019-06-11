@@ -3,6 +3,7 @@ import {View, Image, Text, TextInput, StyleSheet, ActivityIndicator,TouchableOpa
 import {IMAGES} from '../../assets';
 
 import ArrowLeftHeader from '../navigation/headers/ArrowLeft.header'
+import ArrowRightFooter from '../navigation/footers/ArrowRight.footer'
 // import styles from './Verify.screen.styles'
 
 export default class VerifyScreen extends Component {
@@ -53,21 +54,16 @@ export default class VerifyScreen extends Component {
             </View>
         )
     }
+
+    _onClickNext = ()=>
+    this.props.navigation.navigate('NameInput')
+
     renderTextNoCode = ()=>{
         return (
-            <View style= {{alignItems:'center', margin:30, flexDirection: 'row'}}>
+            <View style= {{alignItems:'center', margin:30, flexDirection: 'row',justifyContent:'space-between'}}>
                 
                 <Text style ={{flex:1, color:'#2697AC'}}>I didn't receive code</Text>
-                <TouchableOpacity style={{flex:0,width:80,height:80, borderRadius: 40,
-                    backgroundColor:'#f8f8f8',
-                    elevation: 10,alignItems:'center',justifyContent:'center'}}
-                    onPress={()=>
-                    this.props.navigation.navigate('NameInput')}>
-                    <Image source={IMAGES.arrowRight.black}
-                        
-                        resizeMode='cover'
-                        style={{width:24,height:24}}/>
-                </TouchableOpacity>
+                {ArrowRightFooter({onPress:this._onClickNext})}
                 
             </View>
             
