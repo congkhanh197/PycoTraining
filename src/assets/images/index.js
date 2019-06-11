@@ -4,6 +4,9 @@ const images = {
     white:require('./arrow_right.png'),
     black:require('./arrow_right_black.png')
   },
+  arrowLeft: {
+    black: require('./arrow_left_black.png'),
+  },
   
   male: require('./male.png'),
   female: require('./female.png'),

@@ -2,6 +2,7 @@ import React, { Component } from 'react'
 import {View, Image, Text, TextInput, StyleSheet, ActivityIndicator,TouchableOpacity} from 'react-native'
 import {IMAGES} from '../../assets';
 
+import ArrowLeftHeader from '../navigation/headers/ArrowLeft.header'
 // import styles from './Verify.screen.styles'
 
 export default class VerifyScreen extends Component {
@@ -12,11 +13,22 @@ export default class VerifyScreen extends Component {
             isLoading: true,
         }
     }
+    _onClickBack = ()=>{
+        this.props.navigation.goBack();
+    }
+
+    renderHeader = ()=>{
+        return (
+            <View style={{marginTop:20}}>
+                {ArrowLeftHeader({onPress: this._onClickBack})}
+            </View>
+        )
+    }
     renderTextTittle = () => {
         return (
             <Text style={{
                 margin:30,
-                marginTop: 100, marginRight:70, color:"#353B50", fontSize: 18}}>
+                marginTop: 50, marginRight:70, color:"#353B50", fontSize: 18}}>
                 Enter the 4-digits code sent to you at {this.phone}.
                 <Text style={{color: '#25B7DD',fontSize: 18}}> Did you enter the correct number?</Text>
             </Text>
@@ -24,7 +36,7 @@ export default class VerifyScreen extends Component {
     }
     renderInputNumber = () => {
         return (
-            <View style= {{margin:30, flexDirection: 'row',
+            <View style= {{marginHorizontal:30, flexDirection: 'row',
             justifyContent: 'space-between'}}>
                 <TextInput style = {styles.inputNumber}
                 placeholder={this.state.code.code1}  
@@ -88,6 +100,7 @@ export default class VerifyScreen extends Component {
     render() {
         return this.state.isLoading?<View style ={{flex:1,alignItems:'center',justifyContent:'center'}}><ActivityIndicator/></View> :(
             <View style={styles.container}>
+                {this.renderHeader()}
                 {this.renderTextTittle()}
                 {this.renderInputNumber()}
                 {this.renderTextNoCode()}
