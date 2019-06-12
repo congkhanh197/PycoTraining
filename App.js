@@ -20,7 +20,7 @@ import DiscoveryScreen from './src/modules/Discovery/Discovery.screen';
 import AuthLoadingScreen from './src/modules/navigation/AuthLoading.screen';
 
 import { createSwitchNavigator, createStackNavigator, createAppContainer} from 'react-navigation';
-const AppStack = createStackNavigator({ Home: DiscoveryScreen, Maps: MapsScreen}, {defaultNavigationOptions: {header:null}});
+const AppStack = createStackNavigator({ Maps: MapsScreen, Discovery: DiscoveryScreen}, {defaultNavigationOptions: {header:null}});
 const AuthStack = createStackNavigator({ 
   Welcome: WelcomeScreen, 
   Register: RegisterScreen, 

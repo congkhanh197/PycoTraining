@@ -26,6 +26,7 @@ const images = {
   star:require('./star.png'),
   profile_small:require('./profile_small.png'),
   notification: require('./notification.png'),
+  location:require('./location.png')
 };
 
 export default images;
