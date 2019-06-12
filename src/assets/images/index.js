@@ -16,6 +16,11 @@ const images = {
   register:{
     image: require('./register_image.png')
   },
+  retaurant:{
+    food1:require('./food1.png'),
+    food2:require('./food2.png'),
+    food3:require('./food3.png'),
+  },
   camera: require('./camera.png'),
   profile: require('./profile.png'),
   notification: require('./notification.png'),

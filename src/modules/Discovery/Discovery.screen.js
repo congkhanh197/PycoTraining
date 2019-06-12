@@ -1,7 +1,8 @@
 import React, { Component } from 'react'
-import { View ,Text, FlatList, ImageBackground} from 'react-native'
+import { View ,Text, FlatList, ImageBackground,ScrollView,SafeAreaView} from 'react-native'
 import {IMAGES} from '../../assets'
 
+import ArrowLeftHeader from '../navigation/headers/ArrowLeft.header'
 export default class GenderScreen extends Component {
     constructor(props){
         super(props);
@@ -20,15 +21,15 @@ export default class GenderScreen extends Component {
         ];
         this.nearByRestaurant=[
             {
-                image:"",
+                image:IMAGES.retaurant.food1,
                 title:"Grandiose Restaurant",
                 address:"Airport Road Khilkhet,1229",
             },{
-                image:"",
+                image:IMAGES.retaurant.food2,
                 title:"Test Restaurant",
                 address:"Airport Road Khilkhet,1229",
             },{
-                image:"",
+                image:IMAGES.retaurant.food3,
                 title:"Test 2 Restaurant",
                 address:"Airport Road Khilkhet,1229",
             }
@@ -59,9 +60,22 @@ export default class GenderScreen extends Component {
         ]
     };
 
+        
+    _onClickBack = ()=>{
+        this.props.navigation.goBack();
+    }
+
+    renderHeader = ()=>{
+        return (
+            <View style={{flexDirection:'row', justifyContent:'space-between',marginTop:5}}>
+                {ArrowLeftHeader({onPress: this._onClickBack})}
+            </View>
+        )
+    }
+
     renderTextTittle= ()=>{
         return(
-            <Text>Where would you want to go !</Text>
+            <Text style={{color:'black',fontSize:24,marginBottom:7}}>Where would you want to go !</Text>
         )
     }
 
@@ -74,11 +88,11 @@ export default class GenderScreen extends Component {
         </View>
     );
     renderAddressItem = ({item})=> (
-        <View style={{flexDirection:'row', alignItems:'center'}}>
-            <View style={{width: 20,height:20, backgroundColor:'black'}}/>
+        <View style={{marginBottom:4, flexDirection:'row', alignItems:'center'}}>
+            <View style={{marginRight:7, width: 33,height:33, borderRadius:5, backgroundColor:'#d5dce0'}}/>
             <View>
-                <Text>{item.title}</Text>
-                <Text>{item.address}</Text>
+                <Text style={{fontSize:18, color:'black'}}>{item.title}</Text>
+                <Text style={{fontSize:13.4, color:'#858585'}}>{item.address}</Text>
             </View>
         </View>
     )
@@ -86,7 +100,7 @@ export default class GenderScreen extends Component {
     
     renderNearByRestaurant = ()=>(
         <View>
-            <Text>Nearby Restaurants</Text>
+            <Text style={{fontSize:18,color:'black',marginTop:7}}>Nearby Restaurants</Text>
             <FlatList
                 horizontal= {true}
                 data = {this.nearByRestaurant}
@@ -96,15 +110,18 @@ export default class GenderScreen extends Component {
     )
     renderNearByRestaurantItem = ({item})=>(
         <View>
-            <ImageBackground style = {{margin:10,width:200,height:100}} source={IMAGES.notification}>
-                <Text>{item.title}</Text>
-                <Text>{item.address}</Text>
+            <ImageBackground style = {{marginRight:15,marginTop:10,marginBottom:15,width:300,height:156,
+                borderRadius:10,overflow: 'hidden',backgroundColor:'#f8f8f8',elevation:10}} source={item.image}>
+                <View style={{flex:1,justifyContent:'flex-end', marginLeft:19, marginBottom:15}}>
+                    <Text style={{fontSize:18,color:'white'}}>{item.title}</Text>
+                    <Text style={{fontSize:14,marginTop:4,color:'white'}}>{item.address}</Text>
+                </View>
             </ImageBackground>
         </View>
     )
     renderNearByFriend = ()=>(
-        <View>
-            <Text>Friend nearby you</Text>
+        <View style={{height:210}}>
+            <Text style={{fontSize:18,color:'black'}}>Friend nearby you</Text>
             <FlatList
                 horizontal= {true}
                 data = {this.nearByFriend}
@@ -113,36 +130,40 @@ export default class GenderScreen extends Component {
         </View>
     )
     renderNearByFriendItem = ({item})=>(
-        <View style={{margin:20}}>
-            <View style={{width:30,height:30, backgroundColor:'black'}}/>
-            <Text>{item.firstname}</Text>
-            <Text>{item.address+" "+item.ages}</Text>
+        <View style = {{width:120,height:160,marginRight:15,marginBottom:15,marginTop:7,
+            borderRadius:7,backgroundColor:'white',elevation:5}}>
+            <View style={{marginTop: 15, marginLeft:15, borderRadius:5 ,width:34,height:34, backgroundColor:'#d5dce0'}}/>
+            <Text style={{marginLeft:15, marginTop:23,
+                color:'black', fontSize:18}}>{item.firstname}</Text>
+            <Text style={{marginLeft:15, marginTop:5, fontSize:13.4}}>{item.address+" "+item.ages}</Text>
+            
+            
         </View>
     )
 
     renderTabNavigator = ()=>(
-        <View style={{flexDirection:'row',justifyContent:'space-between'}}>
-            <View style={{width:15, height:15, backgroundColor:'black'}}/>
-            <View style={{width:15, height:15, backgroundColor:'black'}}/>
-            <View style={{width:15, height:15, backgroundColor:'black'}}/>
-            <View style={{width:15, height:15, backgroundColor:'black'}}/>
-            <View style={{width:15, height:15, backgroundColor:'black'}}/>
+        <View style={{height: 50, width:'100%',flexDirection:'row', alignItems:'center', justifyContent:'space-evenly'}}>
+            <View style={{width:30, height:30, borderRadius:5, backgroundColor:'#7ac4ef'}}/>
+            <View style={{width:30, height:30, borderRadius:5, backgroundColor:'#7ac4ef'}}/>
+            <View style={{width:30, height:30, borderRadius:5, backgroundColor:'#7ac4ef'}}/>
+            <View style={{width:30, height:30, borderRadius:5, backgroundColor:'#7ac4ef'}}/>
+            <View style={{width:30, height:30, borderRadius:5, backgroundColor:'#7ac4ef'}}/>
         </View>
     )
 
  
     render() {
         return (
-            <View>
-                <View style={{marginLeft:30}}>
+            <View style={{flexDirection:'column',justifyContent:'space-between'}}>
+                {this.renderHeader()}
+                <ScrollView style={{marginLeft:30}}>
                     {this.renderTextTittle()}
                     {this.renderListAddress()}
                     {this.renderNearByRestaurant()}
                     {this.renderNearByFriend()}
-                </View>
+                </ScrollView>
                 {this.renderTabNavigator()}
             </View>
-            
         )
     }
 }
