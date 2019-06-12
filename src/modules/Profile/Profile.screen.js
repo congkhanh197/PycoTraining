@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import { Image, View ,Text, ImageBackground } from 'react-native'
+import { Image, View ,Text, ImageBackground, TouchableOpacity } from 'react-native'
 import {IMAGES} from '../../assets'
 
 import ArrowLeftHeader from '../navigation/headers/ArrowLeft.header'
@@ -25,7 +25,7 @@ export default class GenderScreen extends Component {
     }
 
     _onClickNext = ()=>{
-        this.props.navigation.navigate('Avatar');
+        this.props.navigation.navigate('NotifiPermision');
     }
     renderFooter = () =>{
         return (
@@ -40,10 +40,13 @@ export default class GenderScreen extends Component {
             <View style={{flex:1,justifyContent:'space-between'}}>
                 {this.renderHeader()}
                 <View style={{flexDirection:'row',alignItems:'center',}}>
-                    <ImageBackground style={{margin:30,marginRight:25,width:120,height:120, alignItems:"center",justifyContent:'center'}} source={IMAGES.profile}>
-                        <Image source={IMAGES.camera}/>
-                    </ImageBackground >
-                    <Text style={{flex: 1,fontSize:25,paddingRight:30}} numberOfLines={2}>Upload   profile picture</Text>
+                    <TouchableOpacity>
+                        <ImageBackground style={{margin:30,marginRight:25,width:120,height:120, alignItems:"center",justifyContent:'center'}} source={IMAGES.profile}>
+                            <Image source={IMAGES.camera}/>
+                        </ImageBackground >
+                    </TouchableOpacity>
+                    
+                    <Text style={{flex: 1,fontSize:25,paddingRight:30}} numberOfLines={3}>Upload          profile picture</Text>
                 </View>
                 {this.renderFooter()}
             </View>
