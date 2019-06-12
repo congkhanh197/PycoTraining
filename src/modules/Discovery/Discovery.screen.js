@@ -1,8 +1,9 @@
 import React, { Component } from 'react'
-import { View ,Text, FlatList, ImageBackground,ScrollView,SafeAreaView} from 'react-native'
+import { View ,Text, FlatList, ImageBackground,ScrollView, Alert} from 'react-native'
 import {IMAGES} from '../../assets'
 
 import ArrowLeftHeader from '../navigation/headers/ArrowLeft.header'
+import ProfileHeader from '../navigation/headers/Profile.header'
 export default class GenderScreen extends Component {
     constructor(props){
         super(props);
@@ -64,18 +65,36 @@ export default class GenderScreen extends Component {
     _onClickBack = ()=>{
         this.props.navigation.goBack();
     }
+    _onClickProfile = ()=>{
+        Alert.alert(
+            'Profile click',
+            'Click to my profile',
+            [
+              {text: 'Ask me later', onPress: () => console.log('Ask me later pressed')},
+              {
+                text: 'Cancel',
+                onPress: () => console.log('Cancel Pressed'),
+                style: 'cancel',
+              },
+              {text: 'OK', onPress: () => console.log('OK Pressed')},
+            ],
+            {cancelable: false},
+          );
+          
+    }
 
     renderHeader = ()=>{
         return (
             <View style={{flexDirection:'row', justifyContent:'space-between',marginTop:5}}>
                 {ArrowLeftHeader({onPress: this._onClickBack})}
+                {ProfileHeader({onPress:this._onClickProfile, name: 'Shadhin', points:4.89, image:IMAGES.profile_small})}
             </View>
         )
     }
 
     renderTextTittle= ()=>{
         return(
-            <Text style={{color:'black',fontSize:24,marginBottom:7}}>Where would you want to go !</Text>
+            <Text style={{color:'black',fontSize:22 , marginBottom:7}}>Where would you want to go !</Text>
         )
     }
 

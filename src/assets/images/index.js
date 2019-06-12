@@ -23,6 +23,8 @@ const images = {
   },
   camera: require('./camera.png'),
   profile: require('./profile.png'),
+  star:require('./star.png'),
+  profile_small:require('./profile_small.png'),
   notification: require('./notification.png'),
 };
 
