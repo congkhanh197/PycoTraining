@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import { Image, View ,TextInput, Te} from 'react-native'
+import { Image, View ,TouchableOpacity} from 'react-native'
 import {IMAGES} from '../../assets'
 
 import ArrowLeftHeader from '../navigation/headers/ArrowLeft.header'
@@ -7,9 +7,21 @@ import SkipHeader from '../navigation/headers/Skip.header'
 import ArrowRightFooter from '../navigation/footers/ArrowRight.footer'
 
 export default class GenderScreen extends Component {
+    constructor(props){
+        super(props)
+        this.userData = this.props.navigation.getParam('userData',{});
+        this.state = {
+            gender:'',
+        }
+    }
 
     _onClickSkip = ()=>{
-
+        this.props.navigation.navigate('Avatar',{
+            userData:{
+                ...this.userData,
+                gender:''
+            }
+        });
     }
     _onClickBack = ()=>{
         this.props.navigation.goBack();
@@ -24,7 +36,12 @@ export default class GenderScreen extends Component {
     }
 
     _onClickNext = ()=>{
-        this.props.navigation.navigate('Avatar');
+        this.props.navigation.navigate('Avatar',{
+            userData:{
+                ...this.userData,
+                gender:this.state.gender
+            }
+        });
     }
     renderFooter = () =>{
         return (
@@ -33,10 +50,23 @@ export default class GenderScreen extends Component {
             </View>
         )
     }
-    renderGenderItem = (source)=>{
-        return(
-            <Image style={{margin:10}} source={source}></Image>
-        
+    _onPressGender = (gender)=>()=>{
+        this.setState({
+            ...this.state,
+            gender:gender
+        })
+    }
+    renderGenderItem = (source, gender)=>{
+        const style = this.state.gender == gender? 
+        {borderWidth:2,borderRadius:49,elevation:10,borderColor:'#a8c2ed'}:{}
+        return(       
+            <View style={{...style,margin:10}}>
+                <TouchableOpacity
+                    style = {{width:95, height:94,}}
+                    onPress={this._onPressGender(gender)}>
+                    <Image style={{width:'100%'}}  resizeMode="cover" source={source}></Image>
+                </TouchableOpacity>
+            </View>
         )
     }
  
@@ -45,12 +75,11 @@ export default class GenderScreen extends Component {
             <View style={{flex:1,flexDirection:'column',justifyContent:'space-between'}} >
                 {this.renderHeader()}
                 <View style={{flexDirection:'row',justifyContent:'center'}}>
-                    {this.renderGenderItem(IMAGES.male)}
-                    {this.renderGenderItem(IMAGES.female)}    
+                    {this.renderGenderItem(IMAGES.male,'male')}
+                    {this.renderGenderItem(IMAGES.female,'female')}    
                 </View>
                 {this.renderFooter()}
             </View>
-           
         )
     }
 }
