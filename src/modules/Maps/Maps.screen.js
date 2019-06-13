@@ -1,10 +1,8 @@
 import React, { Component } from 'react';
-import { Image, View ,TextInput, Text, FlatList, StyleSheet} from 'react-native';
+import { Image, View ,TextInput, Text, FlatList, StyleSheet, TouchableOpacity} from 'react-native';
 import {IMAGES} from '../../assets';
 import MapView, { PROVIDER_GOOGLE } from 'react-native-maps';
 
-import LogoHeader from '../navigation/headers/Logo.header';
-import { TouchableOpacity } from 'react-native-gesture-handler';
 
 export default class MapsScreen extends Component {
     constructor(props){
@@ -30,13 +28,32 @@ export default class MapsScreen extends Component {
         })
     }
     
+    _onLogOut = async () => {
+        console.log('logout');
+        try {
+            await AsyncStorage.setItem('userToken', null)
+            console.log('done')
+        } catch (e) {
+            // saving error
+        }
+    }
+    
+
+    _onPressProfile = ()=>{
+        this.props.navigation.navigate('Auth')
+        this._onLogOut()
+    }
+
     _renderHeader = ()=>{
         return(
             <View style = {{height: 90,flexDirection:'row', justifyContent:'space-between',
             backgroundColor:'rgba(0,0,0,0)'}}>
                 <Image style={{margin:30,height:35,width:107}} resizeMode='contain' source={IMAGES.logo}/>
-                <Image style={{margin:30,width:35,height:35}} resizeMode='cover' source={IMAGES.profile_small}/>
-            </View>
+                <TouchableOpacity onPress ={this._onPressProfile}>
+                    <Image style={{margin:30,width:35,height:35}} resizeMode='cover' source={IMAGES.profile_small}/>
+
+                </TouchableOpacity>
+                </View>
         )
     }
 

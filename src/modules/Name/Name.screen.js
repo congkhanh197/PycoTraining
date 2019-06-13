@@ -6,6 +6,13 @@ import SkipHeader from '../navigation/headers/Skip.header'
 import ArrowRightFooter from '../navigation/footers/ArrowRight.footer'
 
 export default class NameScreen extends PureComponent {
+    constructor(props){
+        super(props)
+        this.userData = this.props.navigation.getParam('userData',null);
+        this.state = {
+            text:'Shadhin arafat'
+        }
+    }
 
     renderHeader = ()=>{
         return (
@@ -25,18 +32,26 @@ export default class NameScreen extends PureComponent {
             <TextInput
             style={{margin:30,textAlign:'center', backgroundColor:'#f8f8f8',
             elevation: 10,}}
-            value = 'Shadhin arafat'/>
+            onChangeText = {(text)=> this.setState({text})}
+            value = {this.state.text} editable = {true}/>
         )
     }
     _onClickSkip = ()=>{
-
+        this.props.navigation.navigate('ChooseGender',{
+            userData:this.userData
+        });
     }
     _onClickBack = ()=>{
         this.props.navigation.goBack();
     }
 
     _onClickNext = ()=>{
-        this.props.navigation.navigate('ChooseGender');
+        this.props.navigation.navigate('ChooseGender',{
+            userData:{
+                ...this.userData,
+                name:this.state.text,
+            }
+        });
     }
     renderFooter = () =>{
         return (

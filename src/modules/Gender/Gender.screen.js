@@ -17,10 +17,7 @@ export default class GenderScreen extends Component {
 
     _onClickSkip = ()=>{
         this.props.navigation.navigate('Avatar',{
-            userData:{
-                ...this.userData,
-                gender:''
-            }
+            userData:this.userData
         });
     }
     _onClickBack = ()=>{
@@ -36,12 +33,13 @@ export default class GenderScreen extends Component {
     }
 
     _onClickNext = ()=>{
-        this.props.navigation.navigate('Avatar',{
-            userData:{
-                ...this.userData,
-                gender:this.state.gender
-            }
-        });
+        const tranferData = this.state.gender == ""?{
+            userData:this.userData
+        } :{userData:{
+            ...this.userData,
+            gender:this.state.gender
+        } }
+        this.props.navigation.navigate('Avatar',tranferData);
     }
     renderFooter = () =>{
         return (

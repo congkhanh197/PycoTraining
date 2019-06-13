@@ -7,10 +7,17 @@ import SkipHeader from '../navigation/headers/Skip.header'
 import ArrowRightFooter from '../navigation/footers/ArrowRight.footer'
 
 export default class GenderScreen extends Component {
+    constructor(props){
+        super(props)
+        this.userData = this.props.navigation.getParam('userData',null)
+
+    }
 
 
     _onClickSkip = ()=>{
-
+        this.props.navigation.navigate('NotifiPermision',{
+            userData:this.userData
+        });
     }
     _onClickBack = ()=>{
         this.props.navigation.goBack();
@@ -25,7 +32,12 @@ export default class GenderScreen extends Component {
     }
 
     _onClickNext = ()=>{
-        this.props.navigation.navigate('NotifiPermision');
+        this.props.navigation.navigate('NotifiPermision',{
+            userData:{
+                ...this.userData,
+                avatar:'urltoAvatar'
+            }
+        });
     }
     renderFooter = () =>{
         return (

@@ -40,23 +40,27 @@ export default class VerifyScreen extends Component {
             <View style= {{marginHorizontal:30, flexDirection: 'row',
             justifyContent: 'space-between'}}>
                 <TextInput style = {styles.inputNumber}
-                placeholder={this.state.code.code1}  
+                value={this.state.code.code1}  
                 keyboardType={'numeric'}/>
                 <TextInput style = {styles.inputNumber}
-                placeholder={this.state.code.code2}    
+                value={this.state.code.code2}    
                 keyboardType={'numeric'}/>
                 <TextInput style = {styles.inputNumber}
-                placeholder={this.state.code.code3} 
+                value={this.state.code.code3} 
                 keyboardType={'numeric'}/>
                 <TextInput style = {styles.inputNumber}
-                placeholder={this.state.code.code4}    
+                value={this.state.code.code4}    
                 keyboardType={'numeric'}/>
             </View>
         )
     }
 
     _onClickNext = ()=>
-    this.props.navigation.navigate('NameInput')
+    this.props.navigation.navigate('NameInput',{
+        userData:{
+            phone:this.phone,
+        }
+    })
 
     renderTextNoCode = ()=>{
         return (
@@ -80,7 +84,6 @@ export default class VerifyScreen extends Component {
         }
     }
     _getCodeFromAPI = async ()=>{
-        console.log(this.phone)
         return fetch('https://demo4820430.mockable.io/user/verify',
         {
             method:"POST",
